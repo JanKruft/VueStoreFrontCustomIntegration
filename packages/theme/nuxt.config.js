@@ -12,7 +12,11 @@ export default {
     meta: [
       { charset: 'utf-8' },
       { name: 'viewport', content: 'width=device-width, initial-scale=1' },
-      { hid: 'description', name: 'description', content: process.env.npm_package_description || '' }
+      {
+        hid: 'description',
+        name: 'description',
+        content: process.env.npm_package_description || ''
+      }
     ],
     link: [
       {
@@ -27,12 +31,14 @@ export default {
       },
       {
         rel: 'preload',
-        href: 'https://fonts.googleapis.com/css?family=Raleway:300,400,400i,500,600,700|Roboto:300,300i,400,400i,500,700&display=swap',
+        href:
+          'https://fonts.googleapis.com/css?family=Raleway:300,400,400i,500,600,700|Roboto:300,300i,400,400i,500,700&display=swap',
         as: 'style'
       },
       {
         rel: 'stylesheet',
-        href: 'https://fonts.googleapis.com/css?family=Raleway:300,400,400i,500,600,700|Roboto:300,300i,400,400i,500,700&display=swap',
+        href:
+          'https://fonts.googleapis.com/css?family=Raleway:300,400,400i,500,600,700|Roboto:300,300i,400,400i,500,700&display=swap',
         media: 'print',
         onload: 'this.media=\'all\'',
         once: true
@@ -50,35 +56,35 @@ export default {
     // to core
     '@nuxt/typescript-build',
     '@nuxtjs/style-resources',
-    ['@vue-storefront/nuxt', {
-      // @core-development-only-start
-      coreDevelopment: true,
-      // @core-development-only-end
-      useRawSource: {
-        dev: [
-          '@vue-storefront/boilerplate',
-          '@vue-storefront/core'
-        ],
-        prod: [
-          '@vue-storefront/boilerplate',
-          '@vue-storefront/core'
-        ]
-      }
-    }],
-    // @core-development-only-start
-    ['@vue-storefront/nuxt-theme', {
-      generate: {
-        replace: {
-          apiClient: '@vue-storefront/boilerplate-api',
-          composables: '@vue-storefront/boilerplate'
+    [
+      '@vue-storefront/nuxt',
+      {
+        // @core-development-only-start
+        coreDevelopment: true,
+        // @core-development-only-end
+        useRawSource: {
+          dev: ['@wsam/cryfashion', '@vue-storefront/core'],
+          prod: ['@wsam/cryfashion', '@vue-storefront/core']
         }
       }
-    }],
+    ],
+    // @core-development-only-start
+    [
+      '@vue-storefront/nuxt-theme',
+      {
+        generate: {
+          replace: {
+            apiClient: '@wsam/cryfashion-api',
+            composables: '@wsam/cryfashion'
+          }
+        }
+      }
+    ],
     // @core-development-only-end
     /* project-only-start
     ['@vue-storefront/nuxt-theme'],
     project-only-end */
-    ['@vue-storefront/boilerplate/nuxt', {}]
+    ['@wsam/cryfashion/nuxt', {}]
   ],
 
   // Modules: https://go.nuxtjs.dev/config-modules
@@ -107,14 +113,16 @@ export default {
   },
 
   styleResources: {
-    scss: [require.resolve('@storefront-ui/shared/styles/_helpers.scss', { paths: [process.cwd()] })]
+    scss: [
+      require.resolve('@storefront-ui/shared/styles/_helpers.scss', {
+        paths: [process.cwd()]
+      })
+    ]
   },
 
   // Build Configuration: https://go.nuxtjs.dev/config-build
   build: {
-    transpile: [
-      'vee-validate/dist/rules'
-    ],
+    transpile: ['vee-validate/dist/rules'],
     plugins: [
       new webpack.DefinePlugin({
         'process.VERSION': JSON.stringify({
@@ -127,7 +135,7 @@ export default {
   },
 
   router: {
-    scrollBehavior (_to, _from, savedPosition) {
+    scrollBehavior(_to, _from, savedPosition) {
       if (savedPosition) {
         return savedPosition;
       } else {

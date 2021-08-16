@@ -3,7 +3,7 @@ import {
   useCategoryFactory,
   UseCategoryFactoryParams
 } from '@vue-storefront/core';
-import type { Category } from '@vue-storefront/boilerplate-api';
+import type { Category } from '@wsam/cryfashion-api';
 import type {
   UseCategorySearchParams as SearchParams
 } from '../types';
