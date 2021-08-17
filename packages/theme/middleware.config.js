@@ -1,6 +1,6 @@
 module.exports = {
   integrations: {
-    boilerplate: {
+    cryfashion: {
       location: '@wsam/cryfashion-api/server',
       configuration: {}
     }

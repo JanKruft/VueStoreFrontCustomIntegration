@@ -1,9 +1,11 @@
 import { integrationPlugin } from '@vue-storefront/core';
 
-const moduleOptions = <%= serialize(options) %>;
+const moduleOptions = JSON.parse('<%= JSON.stringify(options) %>');
+
+JSON.parse('<%= JSON.stringify(options) %>');
 
 export default integrationPlugin(({ integration }) => {
-  integration.configure('boilerplate', {
+  integration.configure('cryfashion', {
     ...moduleOptions
     // other options
   });
